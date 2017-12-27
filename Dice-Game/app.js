@@ -1,9 +1,12 @@
-var scores, roundScore, activePlayer, gamePlaying;
+var scores, roundScore, activePlayer, gamePlaying, previousWasASix, maxScore;
 init();
 
-document.querySelector('.dice').style.display = 'none';
-
+/**
+ * Function that switches the players.
+ */
 function nextPlayer() {
+    previousWasASix = false;
+    console.log(previousWasASix);
     activePlayer === 0 ? activePlayer = 1 : activePlayer = 0;
     roundScore = 0;
     document.getElementById('current-0').textContent = '0';
@@ -14,6 +17,9 @@ function nextPlayer() {
     document.querySelector('.dice').style.display = 'none';
 }
 
+/**
+ * Event on Rolling a dice, a random dice will be thrown. The sum will be added to the player's current score.
+ */
 document.querySelector(".btn-roll").addEventListener('click', function () {
     if (gamePlaying) {
         var dice = Math.floor(Math.random() * 6) + 1;
@@ -22,6 +28,15 @@ document.querySelector(".btn-roll").addEventListener('click', function () {
         diceDom.src = 'dice-' + dice + '.png';
         if (dice > 1) {
             roundScore += dice;
+            if (dice === 6) {
+                if (previousWasASix) {
+                    scores[activePlayer] = 0;
+                    document.querySelector('#score-' + activePlayer).textContent = scores[activePlayer];
+                    nextPlayer();
+                } else {
+                    previousWasASix = true;
+                }
+            }
             document.querySelector('#current-' + activePlayer).textContent = roundScore;
         } else {
             nextPlayer();
@@ -29,12 +44,16 @@ document.querySelector(".btn-roll").addEventListener('click', function () {
     }
 });
 
+/**
+ * Event on click for the HOLD button. If the score is heigher the the score inputed by the user,
+ * the player will win.
+ */
 document.querySelector(".btn-hold").addEventListener('click', function () {
     if (gamePlaying) {
         scores[activePlayer] += roundScore;
         document.querySelector('#score-' + activePlayer).textContent = scores[activePlayer];
 
-        if (scores[activePlayer] >= 10) {
+        if (scores[activePlayer] >= maxScore) {
             gamePlaying = false;
             document.querySelector('#name-' + activePlayer).textContent = 'Winer!';
             document.querySelector('.dice').style.display = 'none';
@@ -46,6 +65,9 @@ document.querySelector(".btn-hold").addEventListener('click', function () {
     }
 });
 
+/**
+ * When the user presses on the new Game button, a new game will start.
+ */
 document.querySelector(".btn-new").addEventListener('click', init);
 
 function init() {
@@ -73,3 +95,15 @@ function init() {
 
     document.querySelector('.player-0-panel').classList.add('active');
 }
+
+/**
+ * User inputs a score and has to press ENTER, the score will represent the points that are needed to win the game.
+ */
+document.querySelector('#inputScore').addEventListener('keyup', function () {
+    if (event.keyCode === 13) {
+        var inputScore = parseInt(document.getElementById('inputScore').value);
+        if (!isNaN(inputScore)) {
+            maxScore = inputScore;
+        }
+    }
+});

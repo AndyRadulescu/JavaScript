@@ -138,6 +138,20 @@ i {
 }
 
 .btn-new { top: 45px;}
+.inputScore{
+    position: absolute;
+    width: 200px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: #555;
+    font-family: Lato;
+    font-size: 20px;
+    text-transform: uppercase;
+    cursor: pointer;
+    font-weight: 300;
+    transition: background-color 0.3s, color 0.3s;
+    top: 80px;
+}
 .btn-roll { top: 403px;}
 .btn-hold { top: 467px;}
 
