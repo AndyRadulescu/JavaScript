@@ -1,0 +1,49 @@
+<html>
+
+<head>
+    <title>Move the rectangle by clicking</title>
+
+    <style>
+        body {
+            background-color: #FFF
+        }
+
+        #container {
+            width: 900px;
+            height: 500px;
+            background-color: #EDEDED;
+            cursor: pointer;
+        }
+
+        #firstRect {
+            width: 50px;
+            height: 50px;
+            background-color: rgb(175, 17, 83);
+            transform: translate(25px, 25px);
+            /* transition: transform .3s cubic-bezier(.66,.34,.77,.47); */
+        }
+
+        #secondRect {
+            width: 50px;
+            height: 50px;
+            background-color: rgb(46, 17, 175);
+            transform: translate(500px, 300px);
+            float: left;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div id="container">
+
+        <div id="secondRect"></div>
+        <div id="firstRect"></div>
+
+    </div>
+
+    <br/>
+    <script src="scripts/main.js "></script>
+</body>
+
+</html>
