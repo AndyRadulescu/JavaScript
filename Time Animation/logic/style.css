@@ -1,0 +1,59 @@
+body{
+    background-color: blueviolet;
+}
+
+.bigdiv{
+width:180px;
+    overflow: hidden;
+    background-color: red;
+}
+
+p{
+    padding: 0px;
+    margin: 0px;
+    font-size:      50px;
+    font-weight:    bold;
+}
+.color{
+    color: white;
+    background-color: black;
+}
+.mydivs{
+    width: 60px;
+    height: 60px;
+    display: inline-block;
+}
+
+.overrideSecond{
+    width: 60px;
+    height: 60px;
+    position: absolute;
+    bottom: 100%;
+    left: 0;
+}
+.overrideMinute{
+    width: 60px;
+    height: 60px;
+    position: absolute;
+    bottom: 100%;
+    left: 0;
+}
+.overrideHour{
+    width: 60px;
+    height: 60px;
+    position: absolute;
+    bottom: 100%;
+    left: 0;
+}
+
+.hour{
+    position: relative;
+}
+
+.minute{
+    position: relative; 
+}
+
+.second{
+    position: relative; 
+}
